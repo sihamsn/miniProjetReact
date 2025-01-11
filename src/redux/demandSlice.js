@@ -1,35 +1,35 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// URL de base de l'API MockAPI
+
 const API_URL = 'https://6761ef9a46efb37323734e80.mockapi.io/utilisateurs';
 
-// Action asynchrone pour récupérer les demandes d'un utilisateur
+
 export const fetchUserRequestsAsync = createAsyncThunk(
   'demands/fetchRequests',
   async (userId, { rejectWithValue }) => {
     try {
       const response = await axios.get(`${API_URL}/${userId}`);
-      return response.data.requests; // Retourner les demandes de l'utilisateur
+      return response.data.requests; 
     } catch (error) {
       return rejectWithValue(error.response?.data || error.message);
     }
   }
 );
 
-// Action asynchrone pour ajouter une demande
+
 export const addDemandAsync = createAsyncThunk(
   'demands/addDemand',
   async ({ id, newDemand }, { rejectWithValue }) => {
     try {
-      // Récupérer l'utilisateur existant pour mettre à jour ses demandes
+ 
       const response = await axios.get(`${API_URL}/${id}`);
       const updatedRequests = [...response.data.requests, newDemand];
 
-      // Mettre à jour les demandes de l'utilisateur
+
       await axios.put(`${API_URL}/${id}`, { requests: updatedRequests });
 
-      // Retourner l'id de l'utilisateur et la nouvelle demande pour mettre à jour l'état
+ 
       return { id, updatedRequests };
     } catch (error) {
       return rejectWithValue(error.response?.data || error.message);
@@ -46,9 +46,9 @@ export const cancelRequestAsync = createAsyncThunk(
 
       const updatedRequests = response.data.requests.map((request) => {
         if (request.id === requestId && request.status === 'En attente') {
-          return { ...request, status: 'Annulée' }; // Annuler la demande
+          return { ...request, status: 'Annulée' };
         }
-        return request; // Laisser les autres demandes inchangées
+        return request; 
       });
 
       console.log('Updated requests:', updatedRequests);
@@ -69,12 +69,12 @@ export const fetchUserRequestsAsyncAdmin = createAsyncThunk(
   'users/fetchUserRequests',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(API_URL); // Remplacez par l'URL de votre API
+      const response = await axios.get(API_URL); 
 
-      // Récupère toutes les demandes des utilisateurs
+  
       const users = response.data;
 
-      // Récupère toutes les demandes de tous les utilisateurs et inclut leur nom et prénom
+
       const allRequests = users.flatMap(user => 
         user.requests.map(request => ({
           ...request,
@@ -93,7 +93,7 @@ export const fetchUserRequestsAsyncAdmin = createAsyncThunk(
   }
 );
 
-// Action asynchrone pour approuver une demande
+
 export const approveRequestAsync = createAsyncThunk(
   'demands/approveRequest',
   async ({ userId, requestId }, { rejectWithValue }) => {
@@ -101,7 +101,7 @@ export const approveRequestAsync = createAsyncThunk(
       const response = await axios.get(`${API_URL}/${userId}`);
       const updatedRequests = response.data.requests.map((request) => {
         if (request.id === requestId) {
-          return { ...request, status: 'Approuvée' }; // Mettre à jour le statut
+          return { ...request, status: 'Approuvée' }; 
         }
         return request;
       });
@@ -114,7 +114,6 @@ export const approveRequestAsync = createAsyncThunk(
   }
 );
 
-// Action asynchrone pour rejeter une demande
 export const rejectRequestAsync = createAsyncThunk(
   'demands/rejectRequest',
   async ({ userId, requestId }, { rejectWithValue }) => {
@@ -122,7 +121,7 @@ export const rejectRequestAsync = createAsyncThunk(
       const response = await axios.get(`${API_URL}/${userId}`);
       const updatedRequests = response.data.requests.map((request) => {
         if (request.id === requestId) {
-          return { ...request, status: 'Rejetée' }; // Mettre à jour le statut
+          return { ...request, status: 'Rejetée' }; 
         }
         return request;
       });
@@ -135,40 +134,38 @@ export const rejectRequestAsync = createAsyncThunk(
   }
 );
 
-// Slice Redux
 const demandSlice = createSlice({
   name: 'demands',
   initialState: {
     isLoading: false,
     error: null,
-    requests: [], // Assurez-vous que `requests` est un tableau vide au départ
+    requests: [], 
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
     
-      // Récupérer les demandes d'un utilisateur (en attente)
+    
       .addCase(fetchUserRequestsAsync.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
-      // Récupérer les demandes d'un utilisateur (réussie)
       .addCase(fetchUserRequestsAsync.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        // Mettre à jour l'état avec les demandes récupérées
+      
         state.requests = action.payload;
       })
-      // Récupérer les demandes d'un utilisateur (échec)
+
       .addCase(fetchUserRequestsAsync.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       })
-      // Ajoutez ce bloc dans extraReducers
+     
 .addCase(cancelRequestAsync.fulfilled, (state, action) => {
   state.isLoading = false;
   state.error = null;
-  state.requests = action.payload; // Met à jour la liste des demandes
+  state.requests = action.payload; 
 })
 .addCase(cancelRequestAsync.rejected, (state, action) => {
   state.isLoading = false;
@@ -183,7 +180,7 @@ const demandSlice = createSlice({
       .addCase(fetchUserRequestsAsyncAdmin.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.requests = action.payload; // Enregistre toutes les demandes
+        state.requests = action.payload; 
       })
       .addCase(fetchUserRequestsAsyncAdmin.rejected, (state, action) => {
         state.isLoading = false;
@@ -193,7 +190,7 @@ const demandSlice = createSlice({
       .addCase(approveRequestAsync.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.requests = action.payload; // Met à jour la liste des demandes
+        state.requests = action.payload;
       })
       .addCase(approveRequestAsync.rejected, (state, action) => {
         state.isLoading = false;
@@ -202,7 +199,7 @@ const demandSlice = createSlice({
       .addCase(rejectRequestAsync.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.requests = action.payload; // Met à jour la liste des demandes
+        state.requests = action.payload; 
       })
       .addCase(rejectRequestAsync.rejected, (state, action) => {
         state.isLoading = false;
