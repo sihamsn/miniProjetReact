@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addDemandAsync } from '../redux/demandSlice';
-import { v4 as uuidv4 } from 'uuid'; // Importer uuid
+import { v4 as uuidv4 } from 'uuid'; 
 import { useNavigate } from 'react-router-dom';
 
 const AjouterDemande = () => {
@@ -14,9 +14,9 @@ const AjouterDemande = () => {
   const navigate = useNavigate();
 
 
-  // Récupérer l'ID de l'utilisateur connecté depuis le store Redux
-  const user = useSelector((state) => state.user); // Récupération de l'utilisateur connecté
-  const primaryColor = user?.couleur || '#007BFF'; // Couleur par défaut si non définie
+ 
+  const user = useSelector((state) => state.user); 
+  const primaryColor = user?.couleur || '#007BFF'; 
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,7 +27,7 @@ const AjouterDemande = () => {
     }
   
     const newRequest = {
-      id: uuidv4(), // Générer un ID unique
+      id: uuidv4(),
       title,
       description,
       startDate,
@@ -37,13 +37,13 @@ const AjouterDemande = () => {
       createdAt: new Date().toISOString(),
     };
   
-    // Action Redux pour ajouter une demande
+ 
     dispatch(addDemandAsync({ id: user.id, newDemand: newRequest }));
     alert("Votre demande a bien été enregistrée.");
     navigate('/ajouter-demande'); 
     console.log('Demande ajoutée:', newRequest);
   
-    // Réinitialiser le formulaire
+  
     setTitle('');
     setDescription('');
     setStartDate('');
@@ -108,7 +108,7 @@ const AjouterDemande = () => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           required
-          style={{ ...inputStyle, height: '100px' }} // Ajuster la hauteur pour le textarea
+          style={{ ...inputStyle, height: '100px' }} /
         />
       </label>
       <label style={labelStyle}>
@@ -143,8 +143,8 @@ const AjouterDemande = () => {
       <button 
         type="submit" 
         style={buttonStyle} 
-        onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#0056b3'} // Couleur au survol
-        onMouseOut={(e) => e.currentTarget.style.backgroundColor = primaryColor} // Retour à la couleur d'origine
+        onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#0056b3'} 
+        onMouseOut={(e) => e.currentTarget.style.backgroundColor = primaryColor} 
       >
         Ajouter
       </button>
