@@ -44,7 +44,6 @@ const CreateAccount = () => {
       return;
     }
     try {
-      // Vérifier si l'email existe déjà
       const response = await axios.get('https://6761ef9a46efb37323734e80.mockapi.io/utilisateurs');
       const emailTaken = response.data.some((user) => user.email === formData.email);
 
@@ -54,7 +53,7 @@ const CreateAccount = () => {
         return;
       }
 
-      // Si l'email n'est pas pris, on crée le compte
+  
       await axios.post('https://6761ef9a46efb37323734e80.mockapi.io/utilisateurs', {
         ...rest,
         MotDePasse,
