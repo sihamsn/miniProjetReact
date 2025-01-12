@@ -108,7 +108,7 @@ const AjouterDemande = () => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           required
-          style={{ ...inputStyle, height: '100px' }} /
+          style={{ ...inputStyle, height: '100px' }}
         />
       </label>
       <label style={labelStyle}>

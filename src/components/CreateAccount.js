@@ -1,22 +1,21 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const CreateAccount = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    nom: '',
-    prenom: '',
-    pseudo: '',
-    email: '',
-    couleur: '',
-    MotDePasse: '',
-    confirmationMotDePasse: '',
-    age: '',
-    Devise: '',
-    Pays: '',
-    avatar: '',
-    photo: '',
+    nom: "",
+    prenom: "",
+    pseudo: "",
+    email: "",
+    couleur: "",
+    MotDePasse: "",
+    confirmationMotDePasse: "",
+    age: "",
+    Devise: "",
+    Pays: "",
+    avatar: "",
+    photo: "",
     admin: true,
   });
 
@@ -28,52 +27,70 @@ const CreateAccount = () => {
     const { MotDePasse, confirmationMotDePasse, ...rest } = formData;
 
     if (MotDePasse !== confirmationMotDePasse) {
-      setErrors(['Les mots de passe ne correspondent pas']);
+      setErrors(["Les mots de passe ne correspondent pas"]);
       return;
     }
 
-    if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(MotDePasse)) {
+    if (
+      !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
+        MotDePasse
+      )
+    ) {
       setErrors([
-        'Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.',
+        "Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.",
       ]);
       return;
     }
 
-    if (Object.values(formData).includes('')) {
-      setErrors(['Tous les champs sont obligatoires']);
+    if (Object.values(formData).includes("")) {
+      setErrors(["Tous les champs sont obligatoires"]);
       return;
     }
     try {
-      const response = await axios.get('https://6761ef9a46efb37323734e80.mockapi.io/utilisateurs');
-      const emailTaken = response.data.some((user) => user.email === formData.email);
+      const response = await axios.get(
+        "https://6761ef9a46efb37323734e80.mockapi.io/utilisateurs"
+      );
+      const emailTaken = response.data.some(
+        (user) => user.email === formData.email
+      );
 
       if (emailTaken) {
         setEmailExist(true);
-        setErrors(['L\'email est déjà utilisé.']);
+        setErrors(["L'email est déjà utilisé."]);
         return;
       }
 
-  
-      await axios.post('https://6761ef9a46efb37323734e80.mockapi.io/utilisateurs', {
-        ...rest,
-        MotDePasse,
-        admin: formData.admin,
-      });
+      await axios.post(
+        "https://6761ef9a46efb37323734e80.mockapi.io/utilisateurs",
+        {
+          ...rest,
+          MotDePasse,
+          admin: formData.admin,
+        }
+      );
 
-      alert('Votre compte a été créé avec succès. Vous pouvez maintenant vous connecter!');
-      navigate('/');
+      alert(
+        "Votre compte a été créé avec succès. Vous pouvez maintenant vous connecter!"
+      );
+      navigate("/");
     } catch (error) {
-      setErrors(['Erreur lors de la création du compte']);
+      setErrors(["Erreur lors de la création du compte"]);
     }
   };
 
   return (
-    <div className="container">
-      <style>
+    <div
+      style={{
+        backgroundImage:
+          "repeating-linear-gradient(90deg, hsla(196,0%,79%,0.06) 0px, hsla(196,0%,79%,0.06) 1px,transparent 1px, transparent 96px),repeating-linear-gradient(0deg, hsla(196,0%,79%,0.06) 0px, hsla(196,0%,79%,0.06) 1px,transparent 1px, transparent 96px),repeating-linear-gradient(0deg, hsla(196,0%,79%,0.09) 0px, hsla(196,0%,79%,0.09) 1px,transparent 1px, transparent 12px),repeating-linear-gradient(90deg, hsla(196,0%,79%,0.09) 0px, hsla(196,0%,79%,0.09) 1px,transparent 1px, transparent 12px),linear-gradient(90deg, rgb(255,255,255),rgb(255,255,255))",
+      }}
+      className="container flex items-center justify-center min-h-screen p-5"
+    >
+      {/* <style>
         {`
           body {
             font-family: 'Roboto', sans-serif;
-            background: linear-gradient(to right, #FF7F32, #003366);
+            // background: linear-gradient(to right, #FF7F32, #003366);
             margin: 0;
             padding: 0;
             display: flex;
@@ -206,157 +223,194 @@ const CreateAccount = () => {
             color: #ff7f32;
           }
         `}
-      </style>
+      </style> */}
 
-      <form onSubmit={handleSubmit}>
-      <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-   <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+      <form
+        className="w-[800px] bg-white shadow-xl p-3 border border-slate-100 rounded-xl"
+        onSubmit={handleSubmit}
+      >
+        <h1 className="text-2xl text-center my-4 font-bold">Créer un compte</h1>
+        <div className="inputs flex justify-between flex-wrap gap-3 mt-14">
+          <div className="form-group w-[370px] flex flex-col gap-2">
+            <label htmlFor="nom">Nom</label>
+            <input
+            className="p-2 border border-slate-300 rounded-xl focus:outline-none focus:border-blue-400"
+              type="text"
+              id="nom"
+              placeholder="Nom"
+              value={formData.nom}
+              onChange={(e) =>
+                setFormData({ ...formData, nom: e.target.value })
+              }
+              required
+            />
+          </div>
+          <div className="form-group w-[370px] flex flex-col gap-2">
+            <label htmlFor="prenom">Prénom</label>
+            <input
+            className="p-2 border border-slate-300 rounded-xl focus:outline-none focus:border-blue-400"
+              type="text"
+              id="prenom"
+              placeholder="Prénom"
+              value={formData.prenom}
+              onChange={(e) =>
+                setFormData({ ...formData, prenom: e.target.value })
+              }
+              required
+            />
+          </div>
 
+          <div className="form-group w-[370px] flex flex-col gap-2">
+            <label htmlFor="pseudo">Pseudo</label>
+            <input
+            className="p-2 border border-slate-300 rounded-xl focus:outline-none focus:border-blue-400"
+              type="text"
+              id="pseudo"
+              placeholder="Pseudo"
+              value={formData.pseudo}
+              onChange={(e) =>
+                setFormData({ ...formData, pseudo: e.target.value })
+              }
+              required
+            />
+          </div>
 
-        <h1>Créer un compte</h1>
+          <div className="form-group w-[370px] flex flex-col gap-2">
+            <label htmlFor="email">Email</label>
+            <input
+            className="p-2 border border-slate-300 rounded-xl focus:outline-none focus:border-blue-400"
+              type="email"
+              id="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
+              required
+            />
+          </div>
 
-        <div className="form-group">
-          <label htmlFor="nom">Nom</label>
-          <input
-            type="text"
-            id="nom"
-            placeholder="Nom"
-            value={formData.nom}
-            onChange={(e) => setFormData({ ...formData, nom: e.target.value })}
-            required
-          />
+          <div className="form-group w-[370px] flex flex-col gap-2">
+            <label htmlFor="couleur">Couleur préférée</label>
+            <input
+            className="p-2 border border-slate-300 rounded-xl focus:outline-none focus:border-blue-400"
+              type="text"
+              id="couleur"
+              placeholder="Couleur"
+              value={formData.couleur}
+              onChange={(e) =>
+                setFormData({ ...formData, couleur: e.target.value })
+              }
+              required
+            />
+          </div>
+
+          <div className="form-group w-[370px] flex flex-col gap-2">
+            <label htmlFor="age">Âge</label>
+            <input
+            className="p-2 border border-slate-300 rounded-xl focus:outline-none focus:border-blue-400"
+              type="number"
+              id="age"
+              placeholder="Âge"
+              value={formData.age}
+              onChange={(e) =>
+                setFormData({ ...formData, age: e.target.value })
+              }
+              required
+            />
+          </div>
+
+          <div className="form-group w-[370px] flex flex-col gap-2">
+            <label htmlFor="Devise">Devise</label>
+            <input
+            className="p-2 border border-slate-300 rounded-xl focus:outline-none focus:border-blue-400"
+              type="text"
+              id="Devise"
+              placeholder="Devise"
+              value={formData.Devise}
+              onChange={(e) =>
+                setFormData({ ...formData, Devise: e.target.value })
+              }
+              required
+            />
+          </div>
+
+          <div className="form-group w-[370px] flex flex-col gap-2">
+            <label htmlFor="Pays">Pays</label>
+            <input
+            className="p-2 border border-slate-300 rounded-xl focus:outline-none focus:border-blue-400"
+              type="text"
+              id="Pays"
+              placeholder="Pays"
+              value={formData.Pays}
+              onChange={(e) =>
+                setFormData({ ...formData, Pays: e.target.value })
+              }
+              required
+            />
+          </div>
+          <div className="form-group w-[370px] flex flex-col gap-2">
+            <label htmlFor="avatar">Avatar</label>
+            <input
+            className="p-2 border border-slate-300 rounded-xl focus:outline-none focus:border-blue-400"
+              type="text"
+              id="avatar"
+              onChange={(e) =>
+                setFormData({ ...formData, avatar: e.target.value })
+              }
+              required
+            />
+          </div>
+
+          <div className="form-group w-[370px] flex flex-col gap-2">
+            <label htmlFor="photo">Photo</label>
+            <input
+            className="p-2 border border-slate-300 rounded-xl focus:outline-none focus:border-blue-400"
+              type="text"
+              id="photo"
+              onChange={(e) =>
+                setFormData({ ...formData, photo: e.target.value })
+              }
+              required
+            />
+          </div>
+
+          <div className="form-group w-[370px] flex flex-col gap-2">
+            <label htmlFor="MotDePasse">Mot de passe</label>
+            <input
+            className="p-2 border border-slate-300 rounded-xl focus:outline-none focus:border-blue-400"
+              type="password"
+              id="MotDePasse"
+              placeholder="Mot de passe"
+              value={formData.MotDePasse}
+              onChange={(e) =>
+                setFormData({ ...formData, MotDePasse: e.target.value })
+              }
+              required
+            />
+          </div>
+
+          <div className="form-group w-[370px] flex flex-col gap-2">
+            <label htmlFor="confirmationMotDePasse">
+              Confirmer le mot de passe
+            </label>
+            <input
+            className="p-2 border border-slate-300 rounded-xl focus:outline-none focus:border-blue-400"
+              type="password"
+              id="confirmationMotDePasse"
+              placeholder="Confirmer le mot de passe"
+              value={formData.confirmationMotDePasse}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  confirmationMotDePasse: e.target.value,
+                })
+              }
+              required
+            />
+          </div>
         </div>
-
-        <div className="form-group">
-          <label htmlFor="prenom">Prénom</label>
-          <input
-            type="text"
-            id="prenom"
-            placeholder="Prénom"
-            value={formData.prenom}
-            onChange={(e) => setFormData({ ...formData, prenom: e.target.value })}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="pseudo">Pseudo</label>
-          <input
-            type="text"
-            id="pseudo"
-            placeholder="Pseudo"
-            value={formData.pseudo}
-            onChange={(e) => setFormData({ ...formData, pseudo: e.target.value })}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="couleur">Couleur préférée</label>
-          <input
-            type="text"
-            id="couleur"
-            placeholder="Couleur"
-            value={formData.couleur}
-            onChange={(e) => setFormData({ ...formData, couleur: e.target.value })}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="age">Âge</label>
-          <input
-            type="number"
-            id="age"
-            placeholder="Âge"
-            value={formData.age}
-            onChange={(e) => setFormData({ ...formData, age: e.target.value })}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="Devise">Devise</label>
-          <input
-            type="text"
-            id="Devise"
-            placeholder="Devise"
-            value={formData.Devise}
-            onChange={(e) => setFormData({ ...formData, Devise: e.target.value })}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="Pays">Pays</label>
-          <input
-            type="text"
-            id="Pays"
-            placeholder="Pays"
-            value={formData.Pays}
-            onChange={(e) => setFormData({ ...formData, Pays: e.target.value })}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="avatar">Avatar</label>
-          <input
-            type="text"
-            id="avatar"
-            onChange={(e) => setFormData({ ...formData, avatar: e.target.value })}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="photo">Photo</label>
-          <input
-            type="text"
-            id="photo"
-            onChange={(e) => setFormData({ ...formData, photo: e.target.value })}
-            required
-          />
-        </div>
-
-
-        <div className="form-group">
-          <label htmlFor="MotDePasse">Mot de passe</label>
-          <input
-            type="password"
-            id="MotDePasse"
-            placeholder="Mot de passe"
-            value={formData.MotDePasse}
-            onChange={(e) => setFormData({ ...formData, MotDePasse: e.target.value })}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="confirmationMotDePasse">Confirmer le mot de passe</label>
-          <input
-            type="password"
-            id="confirmationMotDePasse"
-            placeholder="Confirmer le mot de passe"
-            value={formData.confirmationMotDePasse}
-            onChange={(e) => setFormData({ ...formData, confirmationMotDePasse: e.target.value })}
-            required
-          />
-        </div>
-
-        <button type="submit">Créer un compte</button>
-
+        <button type="submit" className="w-full hover:opacity-70 text-center mt-7 mb-2 bg-slate-950 text-white py-4 rounded-xl">Créer un compte</button>
         {errors.length > 0 && (
           <ul>
             {errors.map((error, index) => (
@@ -364,12 +418,11 @@ const CreateAccount = () => {
             ))}
           </ul>
         )}
-
-        
-          <div className="login-link">
-            <p>Vous avez déjà un compte ? <a href="/">Connectez-vous ici</a></p>
-          </div>
-       
+        <div className="login-link">
+          <p>
+            Vous avez déjà un compte ? <a href="/" className="text-orange-500">Connectez-vous ici</a>
+          </p>
+        </div>
       </form>
     </div>
   );

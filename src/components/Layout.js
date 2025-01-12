@@ -14,12 +14,18 @@ const Layout = () => {
 
   return (
     <div>
-     
+      {/* <SplashCursor/> */}
       <header>
         <HeaderSection />
       </header>
+      <main className='relative'>
+        <NavigationBar/>
+        <div className='my-10'>
+         <Outlet/>
+        </div>
+      </main>
 
-    
+{/*     
       <div style={mainContentStyle}>
        
         <aside style={sidebarStyle}>
@@ -30,7 +36,7 @@ const Layout = () => {
         <main style={mainSectionStyle}>
           <NavigationBar />
           <main style={{ flex: 1, padding: '20px' }}>
-          <Outlet /> {/* Contenu dynamique des routes enfants */}
+          <Outlet />
         </main>
         </main>
       </div>
@@ -38,7 +44,7 @@ const Layout = () => {
     
       <footer style={footerStyle}>
         <Footer />
-      </footer>
+      </footer> */}
     </div>
   );
 };

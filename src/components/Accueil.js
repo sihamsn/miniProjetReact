@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-
 const Accueil = () => {
   const user = useSelector((state) => state.user);
+  console.log(user);
+  
 
   const containerStyle = {
   
@@ -52,18 +53,18 @@ const Accueil = () => {
   };
 
   return (
-    <div style={containerStyle}>
-      <h1 style={welcomeStyle}>
+    <div className='flex items-center flex-col gap-5'>
+      <h1 className={`text-[40px] font-bold text-[${user?.couleur}]`}>
         Bienvenue, {user.prenom} {user.nom} dans Fauget Software
       </h1>
 
 
       {user.admin ? (
-        <div style={adminStyle}>
+        <div className='bg-green-700 text-white text-xl font-[400] py-4 px-8 rounded-xl'>
           <p>Vous êtes connecté en tant qu'administrateur</p>
         </div>
       ) : (
-        <p style={subtitleStyle}>
+        <p className='max-w-[800px] text-center'>
         "Notre plateforme vous permet de gérer facilement vos demandes de congé ou d'absence pour maladie.
         Que vous soyez employé ou gestionnaire, accédez à des outils performants pour organiser vos absences en toute transparence."
       </p>

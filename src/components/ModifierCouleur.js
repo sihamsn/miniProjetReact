@@ -51,14 +51,14 @@ const ModifierCouleur = () => {
             onChange={(e) => setNewColor(e.target.value)}
             style={styles.select}
           >
-            <option value="red">Rouge</option>
-            <option value="blue">Bleu</option>
-            <option value="green">Vert</option>
-            <option value="yellow">Jaune</option>
-            <option value="purple">Violet</option>
-            <option value="orange">Orange</option>
-            <option value="pink">Rose</option>
-            <option value="brown">Marron</option>
+            <option value="#ff0000">Rouge</option>
+            <option value="#0000ff">Bleu</option>
+            <option value="#008000">Vert</option>
+            <option value="#ffff00">Jaune</option>
+            <option value="#800080">Violet</option>
+            <option value="#ffa500">Orange</option>
+            <option value="#ffc0cb">Rose</option>
+            <option value="#a52a2a">Marron</option>
           </select>
         </div>
 

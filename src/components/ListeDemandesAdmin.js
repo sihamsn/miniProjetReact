@@ -61,7 +61,7 @@ const ListeDemandesAdmin = () => {
       height: '50px',
     },
     tableRowHover: {
-      backgroundColor: '#f1f1f1',
+      backgroundColor: '#ccc',
     },
     tableData: {
       padding: '10px',
@@ -74,12 +74,15 @@ const ListeDemandesAdmin = () => {
       fontSize: '14px',
       borderRadius: '5px',
       cursor: 'pointer',
-      textDecoration: 'underline',
+      display:'flex',
+      gap:'8px',
+      alignItems:'center',
+      // textDecoration: 'underline',
       transition: 'color 0.3s',
     },
-    buttonHover: {
-      color: '#2980b9',
-    },
+    // buttonHover: {
+    //   color: '#2980b9',
+    // },
     error: {
       color: '#e74c3c',
       fontWeight: 'bold',
@@ -153,6 +156,7 @@ const ListeDemandesAdmin = () => {
                   {demandesEnAttente.map((request) => (
                     <tr
                       key={request.id}
+                      className='hover:bg-slate-300'
                       style={styles.tableRow}
                       onMouseEnter={(e) => (e.target.style = { ...styles.tableRow, ...styles.tableRowHover })}
                       onMouseLeave={(e) => (e.target.style = styles.tableRow)}
@@ -161,7 +165,7 @@ const ListeDemandesAdmin = () => {
                         <strong>{request.nom} {request.prenom}</strong>
                       </td>
                       <td style={styles.tableData}>{request.title}</td>
-                      <td style={styles.tableData}>
+                      <td style={styles.tableData} className='flex gap-3'>
                         <button
                           style={styles.button}
                           onClick={() => handleApprove(request.userId, request.id)}

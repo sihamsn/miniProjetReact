@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { login } from '../redux/userSlice';
 import { Link, useNavigate } from 'react-router-dom';
-
 const Login = () => {
   const [email, setEmail] = useState('');
   const [motDePasse, setMotDePasse] = useState('');
@@ -33,7 +32,6 @@ const Login = () => {
         const user = response.data.filter((user)=>user.MotDePasse === motDePasse)[0];
 
         if (user) {
-          
           dispatch(login(user));
           setEmail('');
           setMotDePasse('');
@@ -100,7 +98,8 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     height: '100vh',
-    backgroundColor: '#1a2b3c', 
+    backgroundImage: 'repeating-linear-gradient(90deg, hsla(196,0%,79%,0.06) 0px, hsla(196,0%,79%,0.06) 1px,transparent 1px, transparent 96px),repeating-linear-gradient(0deg, hsla(196,0%,79%,0.06) 0px, hsla(196,0%,79%,0.06) 1px,transparent 1px, transparent 96px),repeating-linear-gradient(0deg, hsla(196,0%,79%,0.09) 0px, hsla(196,0%,79%,0.09) 1px,transparent 1px, transparent 12px),repeating-linear-gradient(90deg, hsla(196,0%,79%,0.09) 0px, hsla(196,0%,79%,0.09) 1px,transparent 1px, transparent 12px),linear-gradient(90deg, rgb(255,255,255),rgb(255,255,255))',
+    // backgroundColor: '#1a2b3c', 
     padding: '0 15px',
   },
   form: {
@@ -108,22 +107,22 @@ const styles = {
     padding: '30px',
     borderRadius: '8px',
     boxShadow: '0 6px 12px rgba(0, 0, 0, 0.1)',
-    width: '100%',
-    maxWidth: '400px',
+    // width: '100%',
+    maxWidth: '600px',
     textAlign: 'center',
   },
   heading: {
     marginBottom: '20px',
-    fontSize: '24px',
+    fontSize: '35px',
     fontWeight: 'bold',
-    color: '#ff7f32', 
+    color: '#333', 
   },
   input: {
     width: '100%',
     padding: '12px',
     marginBottom: '15px',
-    borderRadius: '6px',
-    border: '1px solid #ff7f32',
+    borderRadius: '15px',
+    border: '1px solid #999',
     fontSize: '16px',
     outline: 'none',
     transition: 'border-color 0.3s',
@@ -131,7 +130,7 @@ const styles = {
   button: {
     width: '100%',
     padding: '12px',
-    backgroundColor: '#ff7f32', 
+    backgroundColor: '#333', 
     color: '#fff',
     border: 'none',
     borderRadius: '6px',
