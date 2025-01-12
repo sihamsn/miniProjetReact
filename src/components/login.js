@@ -130,10 +130,10 @@ const styles = {
   button: {
     width: '100%',
     padding: '12px',
-    backgroundColor: '#333', 
+    backgroundColor: '#222', 
     color: '#fff',
     border: 'none',
-    borderRadius: '6px',
+    borderRadius: '13px',
     cursor: 'pointer',
     fontSize: '16px',
     transition: 'background-color 0.3s',
