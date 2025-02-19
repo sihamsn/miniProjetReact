@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import HeaderSection from './HeaderSection';
-import NavigationBar from './NavigationBar';
-import Index from './Index';
-import Footer from './Footer';
 import { useSelector } from 'react-redux';
 
 const ModifierUtilisateur = () => {
@@ -51,126 +47,106 @@ const ModifierUtilisateur = () => {
       });
   };
 
-  if (loading) return <div>Chargement...</div>;
-  if (error) return <div>{error}</div>;
-
-  const formContainerStyle = {
-    padding: '30px',
-    borderRadius: '8px',
-    boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
-    backgroundColor: '#fff',
-    maxWidth: '600px',
-    margin: '0 auto',
-  };
-
-  const formTitleStyle = {
-    color: primaryColor,
-    marginBottom: '20px',
-    fontSize: '24px',
-  };
-
-  const labelStyle = {
-    display: 'block',
-    marginBottom: '8px',
-    fontSize: '16px',
-    color: '#333',
-  };
-
-  const inputStyle = {
-    width: '100%',
-    padding: '10px',
-    marginBottom: '15px',
-    borderRadius: '5px',
-    border: `1px solid ${primaryColor}`,
-    fontSize: '16px',
-  };
-
-  const buttonStyle = {
-    padding: '10px 20px',
-    margin: '10px 0',
-    backgroundColor: primaryColor,
-    color: '#fff',
-    border: 'none',
-    borderRadius: '5px',
-    cursor: 'pointer',
-    fontSize: '16px',
-    transition: 'background-color 0.3s ease',
-  };
-
-  const buttonHoverStyle = {
-    ...buttonStyle,
-    backgroundColor: `${primaryColor}CC`, 
-  };
+  if (loading) return <div className="text-center py-4">Chargement...</div>;
+  if (error) return <div className="text-center text-red-500 py-4">{error}</div>;
 
   return (
-    
-     
-          <div style={formContainerStyle}>
-            <h1 style={formTitleStyle}>Modifier Utilisateur</h1>
-            <form onSubmit={handleSubmit}>
-              <div>
-                <label style={labelStyle}>Prénom :</label>
-                <input
-                  type="text"
-                  name="prenom"
-                  value={user.prenom}
-                  onChange={handleChange}
-                  style={inputStyle}
-                  required
-                />
-              </div>
-              <div>
-                <label style={labelStyle}>Nom :</label>
-                <input
-                  type="text"
-                  name="nom"
-                  value={user.nom}
-                  onChange={handleChange}
-                  style={inputStyle}
-                  required
-                />
-              </div>
-              <div>
-                <label style={labelStyle}>Email :</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={user.email}
-                  onChange={handleChange}
-                  style={inputStyle}
-                  required
-                />
-              </div>
-              <div>
-                <label style={labelStyle}>Avatar (URL) :</label>
-                <input
-                  type="text"
-                  name="avatar"
-                  value={user.avatar}
-                  onChange={handleChange}
-                  style={inputStyle}
-                />
-              </div>
-              <button
-                type="submit"
-                style={buttonStyle}
-                onMouseOver={(e) => (e.target.style.backgroundColor = buttonHoverStyle.backgroundColor)}
-                onMouseOut={(e) => (e.target.style.backgroundColor = buttonStyle.backgroundColor)}
-              >
-                Enregistrer
-              </button>
-              <button
-                type="button"
-                onClick={() => navigate('/liste-utilisateurs')}
-                style={buttonStyle}
-                onMouseOver={(e) => (e.target.style.backgroundColor = buttonHoverStyle.backgroundColor)}
-                onMouseOut={(e) => (e.target.style.backgroundColor = buttonStyle.backgroundColor)}
-              >
-                Annuler
-              </button>
-            </form>
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
+      <div className="w-full max-w-2xl bg-white rounded-lg shadow-lg p-8">
+        {/* Titre du formulaire */}
+        <h1
+          className="text-2xl font-bold mb-6 text-center"
+          style={{ color: primaryColor }}
+        >
+          Modifier Utilisateur
+        </h1>
+
+        {/* Formulaire */}
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Champ Prénom */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Prénom :
+            </label>
+            <input
+              type="text"
+              name="prenom"
+              value={user.prenom}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2"
+              style={{ borderColor: primaryColor, focusRingColor: primaryColor }}
+              required
+            />
           </div>
 
+          {/* Champ Nom */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Nom :
+            </label>
+            <input
+              type="text"
+              name="nom"
+              value={user.nom}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2"
+              style={{ borderColor: primaryColor, focusRingColor: primaryColor }}
+              required
+            />
+          </div>
+
+          {/* Champ Email */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Email :
+            </label>
+            <input
+              type="email"
+              name="email"
+              value={user.email}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2"
+              style={{ borderColor: primaryColor, focusRingColor: primaryColor }}
+              required
+            />
+          </div>
+
+          {/* Champ Avatar (URL) */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Avatar (URL) :
+            </label>
+            <input
+              type="text"
+              name="avatar"
+              value={user.avatar}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2"
+              style={{ borderColor: primaryColor, focusRingColor: primaryColor }}
+            />
+          </div>
+
+          {/* Boutons */}
+          <div className="flex justify-end gap-4">
+            <button
+              type="button"
+              onClick={() => navigate('/liste-utilisateurs')}
+              className="px-6 py-2 rounded-lg font-semibold transition-colors duration-300"
+              style={{ backgroundColor: primaryColor, color: '#fff' }}
+            >
+              Annuler
+            </button>
+            <button
+              type="submit"
+              className="px-6 py-2 rounded-lg font-semibold transition-colors duration-300"
+              style={{ backgroundColor: primaryColor, color: '#fff' }}
+            >
+              Enregistrer
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 };
 

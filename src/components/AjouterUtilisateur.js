@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import HeaderSection from './HeaderSection';
-import NavigationBar from './NavigationBar';
-import Index from './Index';
-import Footer from './Footer';
 import { useSelector } from 'react-redux';
 
 const AjouterUtilisateur = () => {
@@ -20,9 +16,10 @@ const AjouterUtilisateur = () => {
     pays: '',
     avatar: '',
   });
-  const user = useSelector((state) => state.user); // Récupération de l'utilisateur connecté
 
-  const primaryColor = user?.couleur || '#FF7F32'; 
+  const user = useSelector((state) => state.user); // Récupération de l'utilisateur connecté
+  const primaryColor = user?.couleur || '#FF7F32';
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserData({
@@ -43,178 +40,141 @@ const AjouterUtilisateur = () => {
       });
   };
 
-
- 
-
-
-  const formContainerStyle = {
-    padding: '30px',
-    borderRadius: '8px',
-    boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
-    backgroundColor: '#fff',
-    maxWidth: '600px',
-    margin: '0 auto',
-  };
-
-  const formTitleStyle = {
-    color: primaryColor,
-    marginBottom: '20px',
-    fontSize: '24px',
-  };
-
-  const labelStyle = {
-    display: 'block',
-    marginBottom: '8px',
-    fontSize: '16px',
-    color: '#333',
-  };
-
-  const inputStyle = {
-    width: '100%',
-    padding: '10px',
-    marginBottom: '15px',
-    borderRadius: '5px',
-    border: `1px solid ${primaryColor}`,
-    fontSize: '16px',
-  };
-
-  const buttonStyle = {
-    padding: '10px 20px',
-    margin: '10px 0',
-    backgroundColor: primaryColor,
-    color: '#fff',
-    border: 'none',
-    borderRadius: '5px',
-    cursor: 'pointer',
-    fontSize: '16px',
-    transition: 'background-color 0.3s ease',
-  };
-
-  const buttonHoverStyle = {
-    ...buttonStyle,
-    backgroundColor: `${primaryColor}CC`,
-  };
-
   return (
-
-          <div style={formContainerStyle}>
-            <h1 style={formTitleStyle}>Ajouter un utilisateur</h1>
-            <form onSubmit={handleSubmit}>
-              <div>
-                <label style={labelStyle}>Prénom :</label>
-                <input
-                  type="text"
-                  name="prenom"
-                  placeholder="Prénom"
-                  onChange={handleChange}
-                  style={inputStyle}
-                  required
-                />
-              </div>
-              <div>
-                <label style={labelStyle}>Nom :</label>
-                <input
-                  type="text"
-                  name="nom"
-                  placeholder="Nom"
-                  onChange={handleChange}
-                  style={inputStyle}
-                  required
-                />
-              </div>
-              <div>
-                <label style={labelStyle}>Email :</label>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  onChange={handleChange}
-                  style={inputStyle}
-                  required
-                />
-              </div>
-              <div>
-                <label style={labelStyle}>Âge :</label>
-                <input
-                  type="number"
-                  name="age"
-                  placeholder="Âge"
-                  onChange={handleChange}
-                  style={inputStyle}
-                  required
-                />
-              </div>
-              <div>
-                <label style={labelStyle}>Pseudo :</label>
-                <input
-                  type="text"
-                  name="pseudo"
-                  placeholder="Pseudo"
-                  onChange={handleChange}
-                  style={inputStyle}
-                />
-              </div>
-              <div>
-                <label style={labelStyle}>Mot de passe :</label>
-                <input
-                  type="password"
-                  name="MotDePasse"
-                  placeholder="Mot de passe"
-                  onChange={handleChange}
-                  style={inputStyle}
-                  required
-                />
-              </div>
-              <div>
-                <label style={labelStyle}>Couleur :</label>
-                <input
-                  type="text"
-                  name="couleur"
-                  placeholder="Couleur"
-                  onChange={handleChange}
-                  style={inputStyle}
-                />
-              </div>
-              <div>
-                <label style={labelStyle}>Devise :</label>
-                <input
-                  type="text"
-                  name="devise"
-                  placeholder="Devise"
-                  onChange={handleChange}
-                  style={inputStyle}
-                />
-              </div>
-              <div>
-                <label style={labelStyle}>Pays :</label>
-                <input
-                  type="text"
-                  name="pays"
-                  placeholder="Pays"
-                  onChange={handleChange}
-                  style={inputStyle}
-                />
-              </div>
-              <div>
-                <label style={labelStyle}>Avatar (URL) :</label>
-                <input
-                  type="text"
-                  name="avatar"
-                  placeholder="Avatar (URL)"
-                  onChange={handleChange}
-                  style={inputStyle}
-                />
-              </div>
-              <button
-                type="submit"
-                style={buttonStyle}
-                onMouseOver={(e) => (e.target.style.backgroundColor = buttonHoverStyle.backgroundColor)}
-                onMouseOut={(e) => (e.target.style.backgroundColor = buttonStyle.backgroundColor)}
-              >
-                Ajouter
-              </button>
-            </form>
-          </div>
+    <div className="p-8 rounded-lg shadow-lg bg-white max-w-2xl mx-auto">
+      <h1 className={`text-2xl font-bold mb-5`} style={{ color: primaryColor }}>
+        Ajouter un utilisateur
+      </h1>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Prénom :</label>
+          <input
+            type="text"
+            name="prenom"
+            placeholder="Prénom"
+            onChange={handleChange}
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2"
+            style={{ borderColor: primaryColor, focusRingColor: primaryColor }}
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Nom :</label>
+          <input
+            type="text"
+            name="nom"
+            placeholder="Nom"
+            onChange={handleChange}
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2"
+            style={{ borderColor: primaryColor, focusRingColor: primaryColor }}
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Email :</label>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            onChange={handleChange}
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2"
+            style={{ borderColor: primaryColor, focusRingColor: primaryColor }}
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Âge :</label>
+          <input
+            type="number"
+            name="age"
+            placeholder="Âge"
+            onChange={handleChange}
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2"
+            style={{ borderColor: primaryColor, focusRingColor: primaryColor }}
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Pseudo :</label>
+          <input
+            type="text"
+            name="pseudo"
+            placeholder="Pseudo"
+            onChange={handleChange}
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2"
+            style={{ borderColor: primaryColor, focusRingColor: primaryColor }}
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Mot de passe :</label>
+          <input
+            type="password"
+            name="MotDePasse"
+            placeholder="Mot de passe"
+            onChange={handleChange}
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2"
+            style={{ borderColor: primaryColor, focusRingColor: primaryColor }}
+            required
+          />
+        </div>
+        <div>
+  <label className="block text-sm font-medium text-gray-700 mb-2">Couleur :</label>
+  <input
+    type="color"
+    name="couleur"
+    value={userData.couleur} // Assurez-vous que `userData.couleur` contient la valeur actuelle
+    onChange={handleChange}
+    className="w-full h-10 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2"
+    style={{ 
+      borderColor: primaryColor,
+      focusRingColor: primaryColor,
+    }}
+  />
+</div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Devise :</label>
+          <input
+            type="text"
+            name="devise"
+            placeholder="Devise"
+            onChange={handleChange}
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2"
+            style={{ borderColor: primaryColor, focusRingColor: primaryColor }}
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Pays :</label>
+          <input
+            type="text"
+            name="pays"
+            placeholder="Pays"
+            onChange={handleChange}
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2"
+            style={{ borderColor: primaryColor, focusRingColor: primaryColor }}
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Avatar (URL) :</label>
+          <input
+            type="text"
+            name="avatar"
+            placeholder="Avatar (URL)"
+            onChange={handleChange}
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2"
+            style={{ borderColor: primaryColor, focusRingColor: primaryColor }}
+          />
+        </div>
+        <button
+          type="submit"
+          className={`w-full px-4 py-2 text-white font-semibold rounded-lg transition-colors duration-300`}
+          style={{ backgroundColor: primaryColor }}
+          onMouseOver={(e) => (e.target.style.backgroundColor = `${primaryColor}CC`)}
+          onMouseOut={(e) => (e.target.style.backgroundColor = primaryColor)}
+        >
+          Ajouter
+        </button>
+      </form>
+    </div>
   );
 };
 

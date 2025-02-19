@@ -3,67 +3,48 @@ import { useSelector } from 'react-redux';
 
 const Footer = () => {
   const user = useSelector((state) => state.user);
-
-  
-  const backgroundColor = user.couleur || '#1A1A1A'; 
+  const backgroundColor = user?.couleur || '#1A1A1A'; // Couleur dynamique ou valeur par défaut
 
   return (
-    <footer style={{ ...footerStyle, backgroundColor }}>
-      <div style={footerContentStyle}>
-        <p style={footerTextStyle}>Adresse: Hay Salam, Salé, Maroc</p>
-        <div style={socialLinksStyle}>
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" style={linkStyle}>
-            <i className="fab fa-facebook-f"></i> Facebook
+    <footer
+      className="text-white text-center py-8 px-5 shadow-lg border-t border-opacity-10 transition-colors duration-500"
+      style={{ backgroundColor }}
+    >
+      <div className="max-w-4xl mx-auto">
+        {/* Adresse */}
+        <p className="text-sm font-light text-white text-opacity-80 mb-5">
+          Adresse: Hay Salam, Salé, Maroc
+        </p>
+
+        {/* Liens sociaux */}
+        <div className="flex justify-center space-x-4 mt-4">
+          <a
+            href="https://facebook.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white text-lg px-4 py-2 rounded-full hover:bg-white hover:bg-opacity-10 transition-all duration-300 flex items-center"
+          >
+            <i className="fab fa-facebook-f mr-2"></i>
+            Facebook
           </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" style={linkStyle}>
-            <i className="fab fa-instagram"></i> Instagram
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white text-lg px-4 py-2 rounded-full hover:bg-white hover:bg-opacity-10 transition-all duration-300 flex items-center"
+          >
+            <i className="fab fa-instagram mr-2"></i>
+            Instagram
           </a>
         </div>
+
+        {/* Copyright */}
+        <p className="text-xs text-white text-opacity-50 mt-8 font-light">
+          © 2024 Fauget Software. Tous droits réservés.
+        </p>
       </div>
-      <p style={copyrightStyle}>© 2024 Fauget Software. Tous droits réservés.</p>
     </footer>
   );
-};
-
-const footerStyle = {
-  color: '#fff',
-  textAlign: 'center',
-  padding: '30px 20px',
-  boxShadow: '0 6px 20px rgba(0, 0, 0, 0.2)',
-  borderTop: '1px solid rgba(255, 255, 255, 0.1)',
-  transition: 'background-color 0.5s ease',
-};
-
-const footerContentStyle = {
-  marginBottom: '20px',
-};
-
-const footerTextStyle = {
-  fontSize: '14px',
-  fontWeight: '300',
-  color: 'rgba(255, 255, 255, 0.8)',
-};
-
-const socialLinksStyle = {
-  marginTop: '15px',
-};
-
-const linkStyle = {
-  color: '#fff',
-  textDecoration: 'none',
-  fontSize: '18px',
-  padding: '10px 15px',
-  borderRadius: '30px',
-  margin: '0 10px',
-  display: 'inline-block',
-  transition: 'background-color 0.3s, transform 0.3s',
-};
-
-const copyrightStyle = {
-  fontSize: '12px',
-  color: 'rgba(255, 255, 255, 0.5)',
-  marginTop: '20px',
-  fontWeight: '300',
 };
 
 export default Footer;

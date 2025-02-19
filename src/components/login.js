@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { login } from '../redux/userSlice';
 import { Link, useNavigate } from 'react-router-dom';
+
 const Login = () => {
   const [email, setEmail] = useState('');
   const [motDePasse, setMotDePasse] = useState('');
@@ -24,18 +25,16 @@ const Login = () => {
 
     try {
       const url = `https://6761ef9a46efb37323734e80.mockapi.io/utilisateurs?email=${email}`;
-      console.log('Requête API :', url); 
       const response = await axios.get(url);
-      console.log('Réponse API :', response.data); 
 
       if (response.data.length > 0) {
-        const user = response.data.filter((user)=>user.MotDePasse === motDePasse)[0];
+        const user = response.data.filter((user) => user.MotDePasse === motDePasse)[0];
 
         if (user) {
           dispatch(login(user));
           setEmail('');
           setMotDePasse('');
-          setAttempts(3); 
+          setAttempts(3);
           navigate('/accueil');
         } else {
           setErrors(['Mot de passe incorrect']);
@@ -46,7 +45,6 @@ const Login = () => {
         setAttempts((prevAttempts) => prevAttempts - 1);
       }
     } catch (error) {
-      console.error('Erreur de connexion :', error);
       setErrors(['Erreur de connexion au serveur']);
     } finally {
       setIsLoading(false);
@@ -55,39 +53,51 @@ const Login = () => {
 
   return (
     <div className="Login" style={styles.container}>
-      <form onSubmit={handleSubmit} style={styles.form}>
-        <h1 style={styles.heading}>Connexion</h1>
-        <input
-          type="text"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          style={styles.input}
+      {/* Logo en haut à droite de l'écran */}
+      <div style={styles.logoContainer}>
+        <img
+          src="/fauget.png" // Remplacez par le chemin de votre logo
+          alt="Logo"
+          style={styles.logo}
         />
-        <input
-          type="password"
-          placeholder="Mot de passe"
-          value={motDePasse}
-          onChange={(e) => setMotDePasse(e.target.value)}
-          required
-          style={styles.input}
-        />
-        <button type="submit" disabled={attempts === 0 || isLoading} style={styles.button}>
-          {isLoading ? 'Chargement...' : 'Login'}
-        </button>
-        <ul>
-          {errors.map((error, index) => (
-            <li key={index} style={styles.error}>
-              {error}
-            </li>
-          ))}
-        </ul>
-        {attempts === 0 && <p style={styles.attempts}>Compte bloqué après 3 tentatives.</p>}
-        <p style={styles.link}>
-          Pas encore de compte ? <Link to="/create-account" style={styles.linkText}>Créez un compte ici</Link>
-        </p>
-      </form>
+      </div>
+
+      {/* Moitié gauche avec formulaire */}
+      <div style={styles.leftHalf}>
+        <form onSubmit={handleSubmit} style={styles.form}>
+          <h1 style={styles.heading}>Connexion</h1>
+          <input
+            type="text"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            style={styles.input}
+          />
+          <input
+            type="password"
+            placeholder="Mot de passe"
+            value={motDePasse}
+            onChange={(e) => setMotDePasse(e.target.value)}
+            required
+            style={styles.input}
+          />
+          <button type="submit" disabled={attempts === 0 || isLoading} style={styles.button}>
+            {isLoading ? 'Chargement...' : 'Login'}
+          </button>
+          <ul>
+            {errors.map((error, index) => (
+              <li key={index} style={styles.error}>
+                {error}
+              </li>
+            ))}
+          </ul>
+          {attempts === 0 && <p style={styles.attempts}>Compte bloqué après 3 tentatives.</p>}
+          <p style={styles.link}>
+            Pas encore de compte ? <Link to="/create-account" style={styles.linkText}>Créez un compte ici</Link>
+          </p>
+        </form>
+      </div>
     </div>
   );
 };
@@ -95,27 +105,40 @@ const Login = () => {
 const styles = {
   container: {
     display: 'flex',
+    height: '100vh',
+    backgroundImage: `url(${"\ arriereplan.png"})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    position: 'relative', // Pour positionner le logo absolument
+  },
+  logoContainer: {
+    position: 'absolute', // Position absolue pour placer le logo
+    top: '0px', // Espacement depuis le haut
+    right: '10px', // Espacement depuis la droite
+    zIndex: 10, // Assure que le logo est au-dessus des autres éléments
+  },
+  logo: {
+    width: '250px', // Taille du logo augmentée
+    height: 'auto',
+  },
+  leftHalf: {
+    width: '50%', // Prend la moitié gauche de la page
+    display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: '100vh',
-    backgroundImage: 'repeating-linear-gradient(90deg, hsla(196,0%,79%,0.06) 0px, hsla(196,0%,79%,0.06) 1px,transparent 1px, transparent 96px),repeating-linear-gradient(0deg, hsla(196,0%,79%,0.06) 0px, hsla(196,0%,79%,0.06) 1px,transparent 1px, transparent 96px),repeating-linear-gradient(0deg, hsla(196,0%,79%,0.09) 0px, hsla(196,0%,79%,0.09) 1px,transparent 1px, transparent 12px),repeating-linear-gradient(90deg, hsla(196,0%,79%,0.09) 0px, hsla(196,0%,79%,0.09) 1px,transparent 1px, transparent 12px),linear-gradient(90deg, rgb(255,255,255),rgb(255,255,255))',
-    // backgroundColor: '#1a2b3c', 
-    padding: '0 15px',
+    backgroundColor: 'white', // Fond blanc légèrement transparent
   },
   form: {
-    backgroundColor: '#fff',
+   
     padding: '30px',
-    borderRadius: '8px',
-    boxShadow: '0 6px 12px rgba(0, 0, 0, 0.1)',
-    // width: '100%',
-    maxWidth: '600px',
     textAlign: 'center',
   },
   heading: {
     marginBottom: '20px',
     fontSize: '35px',
     fontWeight: 'bold',
-    color: '#333', 
+    color: '#333',
   },
   input: {
     width: '100%',
@@ -130,7 +153,7 @@ const styles = {
   button: {
     width: '100%',
     padding: '12px',
-    backgroundColor: '#222', 
+    backgroundColor: '#222',
     color: '#fff',
     border: 'none',
     borderRadius: '13px',
@@ -139,11 +162,11 @@ const styles = {
     transition: 'background-color 0.3s',
   },
   error: {
-    color: '#ff7f32', 
+    color: '#ff7f32',
     fontSize: '14px',
   },
   attempts: {
-    color: '#ff4f00', 
+    color: '#ff4f00',
     fontSize: '14px',
   },
   link: {
@@ -151,7 +174,7 @@ const styles = {
     fontSize: '14px',
   },
   linkText: {
-    color: '#ff7f32', 
+    color: '#ff7f32',
     textDecoration: 'none',
   },
 };

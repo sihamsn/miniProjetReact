@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
 const CreateAccount = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -81,160 +82,33 @@ const CreateAccount = () => {
   return (
     <div
       style={{
-        backgroundImage:
-          "repeating-linear-gradient(90deg, hsla(196,0%,79%,0.06) 0px, hsla(196,0%,79%,0.06) 1px,transparent 1px, transparent 96px),repeating-linear-gradient(0deg, hsla(196,0%,79%,0.06) 0px, hsla(196,0%,79%,0.06) 1px,transparent 1px, transparent 96px),repeating-linear-gradient(0deg, hsla(196,0%,79%,0.09) 0px, hsla(196,0%,79%,0.09) 1px,transparent 1px, transparent 12px),repeating-linear-gradient(90deg, hsla(196,0%,79%,0.09) 0px, hsla(196,0%,79%,0.09) 1px,transparent 1px, transparent 12px),linear-gradient(90deg, rgb(255,255,255),rgb(255,255,255))",
+        backgroundImage: "url('/arriereplan.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
       }}
-      className="container flex items-center justify-center min-h-screen p-5"
+      className="p-5"
     >
-      {/* <style>
-        {`
-          body {
-            font-family: 'Roboto', sans-serif;
-            // background: linear-gradient(to right, #FF7F32, #003366);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            animation: fadeIn 1s ease-in-out;
-          }
-
-          @keyframes fadeIn {
-            from {
-              opacity: 0;
-            }
-            to {
-              opacity: 1;
-            }
-          }
-
-          .container {
-            width: 100%;
-            max-width: 450px;
-            background-color: #fff;
-            padding: 100px;
-            border-radius: 10px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            transform: translateY(50px);
-            animation: slideUp 0.6s ease-out;
-          }
-
-          @keyframes slideUp {
-            from {
-              transform: translateY(50px);
-              opacity: 0;
-            }
-            to {
-              transform: translateY(0);
-              opacity: 1;
-            }
-          }
-
-          h1 {
-            color: #003366;
-            font-size: 28px;
-            margin-bottom: 20px;
-            text-align: center;
-            transition: color 0.3s;
-          }
-
-          h1:hover {
-            color: #ff7f32;
-          }
-
-          input {
-            width: 100%;
-            padding: 14px;
-            margin: 12px 0;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: border-color 0.3s, box-shadow 0.3s;
-          }
-
-          input:focus {
-            border-color: #003366;
-            box-shadow: 0 0 5px rgba(0, 51, 102, 0.5);
-            outline: none;
-          }
-
-          button {
-            width: 100%;
-            padding: 16px;
-            background-color: #003366;
-            color: #fff;
-            font-size: 18px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
-          }
-
-          button:hover {
-            background-color: #ff7f32;
-            transform: translateY(-2px);
-          }
-
-          .form-group {
-            width: 100%;
-            margin-bottom: 20px;
-          }
-
-          .form-group label {
-            font-size: 14px;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 6px;
-            transition: color 0.3s;
-          }
-
-          .form-group label:hover {
-            color: #003366;
-          }
-
-          ul {
-            padding-left: 20px;
-            color: red;
-            margin-top: 10px;
-            font-size: 14px;
-          }
-
-          li {
-            margin-bottom: 5px;
-          }
-
-          .login-link {
-            text-align: center;
-            margin-top: 20px;
-          }
-
-          .login-link a {
-            color: #003366;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
-          }
-
-          .login-link a:hover {
-            color: #ff7f32;
-          }
-        `}
-      </style> */}
 
       <form
-        className="w-[800px] bg-white shadow-xl p-3 border border-slate-100 rounded-xl"
+        className="w-full max-w-4xl bg-white shadow-sm p-8 border border-slate-200 rounded-lg mx-4"
         onSubmit={handleSubmit}
       >
-        <h1 className="text-2xl text-center my-4 font-bold">Créer un compte</h1>
-        <div className="inputs flex justify-between flex-wrap gap-3 mt-14">
-          <div className="form-group w-[370px] flex flex-col gap-2">
-            <label htmlFor="nom">Nom</label>
+
+        <h1 className="text-2xl text-center text-black my-4 font-semibold text-slate-700">
+          Créer un compte
+        </h1>
+        <div className="inputs grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+          <div className="form-group flex flex-col gap-1">
+            <label htmlFor="nom" className="text-black"> {/* Label en noir */}
+              Nom
+            </label>
             <input
-            className="p-2 border border-slate-300 rounded-xl focus:outline-none focus:border-blue-400"
+              className="p-2 border border-slate-300 rounded-md focus:outline-none focus:border-blue-300"
               type="text"
               id="nom"
               placeholder="Nom"
@@ -245,10 +119,12 @@ const CreateAccount = () => {
               required
             />
           </div>
-          <div className="form-group w-[370px] flex flex-col gap-2">
-            <label htmlFor="prenom">Prénom</label>
+          <div className="form-group flex flex-col gap-1">
+            <label htmlFor="prenom" className="text-black"> {/* Label en noir */}
+              Prénom
+            </label>
             <input
-            className="p-2 border border-slate-300 rounded-xl focus:outline-none focus:border-blue-400"
+              className="p-2 border border-slate-300 rounded-md focus:outline-none focus:border-blue-300"
               type="text"
               id="prenom"
               placeholder="Prénom"
@@ -260,10 +136,12 @@ const CreateAccount = () => {
             />
           </div>
 
-          <div className="form-group w-[370px] flex flex-col gap-2">
-            <label htmlFor="pseudo">Pseudo</label>
+          <div className="form-group flex flex-col gap-1">
+            <label htmlFor="pseudo" className="text-black"> {/* Label en noir */}
+              Pseudo
+            </label>
             <input
-            className="p-2 border border-slate-300 rounded-xl focus:outline-none focus:border-blue-400"
+              className="p-2 border border-slate-300 rounded-md focus:outline-none focus:border-blue-300"
               type="text"
               id="pseudo"
               placeholder="Pseudo"
@@ -275,10 +153,12 @@ const CreateAccount = () => {
             />
           </div>
 
-          <div className="form-group w-[370px] flex flex-col gap-2">
-            <label htmlFor="email">Email</label>
+          <div className="form-group flex flex-col gap-1">
+            <label htmlFor="email" className="text-black"> {/* Label en noir */}
+              Email
+            </label>
             <input
-            className="p-2 border border-slate-300 rounded-xl focus:outline-none focus:border-blue-400"
+              className="p-2 border border-slate-300 rounded-md focus:outline-none focus:border-blue-300"
               type="email"
               id="email"
               placeholder="Email"
@@ -290,10 +170,12 @@ const CreateAccount = () => {
             />
           </div>
 
-          <div className="form-group w-[370px] flex flex-col gap-2">
-            <label htmlFor="couleur">Couleur préférée</label>
+          <div className="form-group flex flex-col gap-1">
+            <label htmlFor="couleur" className="text-black"> {/* Label en noir */}
+              Couleur préférée
+            </label>
             <input
-            className="p-2 border border-slate-300 rounded-xl focus:outline-none focus:border-blue-400"
+              className="p-2 border border-slate-300 rounded-md focus:outline-none focus:border-blue-300"
               type="text"
               id="couleur"
               placeholder="Couleur"
@@ -305,10 +187,12 @@ const CreateAccount = () => {
             />
           </div>
 
-          <div className="form-group w-[370px] flex flex-col gap-2">
-            <label htmlFor="age">Âge</label>
+          <div className="form-group flex flex-col gap-1">
+            <label htmlFor="age" className="text-black"> {/* Label en noir */}
+              Âge
+            </label>
             <input
-            className="p-2 border border-slate-300 rounded-xl focus:outline-none focus:border-blue-400"
+              className="p-2 border border-slate-300 rounded-md focus:outline-none focus:border-blue-300"
               type="number"
               id="age"
               placeholder="Âge"
@@ -320,10 +204,12 @@ const CreateAccount = () => {
             />
           </div>
 
-          <div className="form-group w-[370px] flex flex-col gap-2">
-            <label htmlFor="Devise">Devise</label>
+          <div className="form-group flex flex-col gap-1">
+            <label htmlFor="Devise" className="text-black"> {/* Label en noir */}
+              Devise
+            </label>
             <input
-            className="p-2 border border-slate-300 rounded-xl focus:outline-none focus:border-blue-400"
+              className="p-2 border border-slate-300 rounded-md focus:outline-none focus:border-blue-300"
               type="text"
               id="Devise"
               placeholder="Devise"
@@ -335,10 +221,12 @@ const CreateAccount = () => {
             />
           </div>
 
-          <div className="form-group w-[370px] flex flex-col gap-2">
-            <label htmlFor="Pays">Pays</label>
+          <div className="form-group flex flex-col gap-1">
+            <label htmlFor="Pays" className="text-black"> {/* Label en noir */}
+              Pays
+            </label>
             <input
-            className="p-2 border border-slate-300 rounded-xl focus:outline-none focus:border-blue-400"
+              className="p-2 border border-slate-300 rounded-md focus:outline-none focus:border-blue-300"
               type="text"
               id="Pays"
               placeholder="Pays"
@@ -349,10 +237,12 @@ const CreateAccount = () => {
               required
             />
           </div>
-          <div className="form-group w-[370px] flex flex-col gap-2">
-            <label htmlFor="avatar">Avatar</label>
+          <div className="form-group flex flex-col gap-1">
+            <label htmlFor="avatar" className="text-black"> {/* Label en noir */}
+              Avatar
+            </label>
             <input
-            className="p-2 border border-slate-300 rounded-xl focus:outline-none focus:border-blue-400"
+              className="p-2 border border-slate-300 rounded-md focus:outline-none focus:border-blue-300"
               type="text"
               id="avatar"
               onChange={(e) =>
@@ -362,10 +252,12 @@ const CreateAccount = () => {
             />
           </div>
 
-          <div className="form-group w-[370px] flex flex-col gap-2">
-            <label htmlFor="photo">Photo</label>
+          <div className="form-group flex flex-col gap-1">
+            <label htmlFor="photo" className="text-black"> {/* Label en noir */}
+              Photo
+            </label>
             <input
-            className="p-2 border border-slate-300 rounded-xl focus:outline-none focus:border-blue-400"
+              className="p-2 border border-slate-300 rounded-md focus:outline-none focus:border-blue-300"
               type="text"
               id="photo"
               onChange={(e) =>
@@ -375,10 +267,12 @@ const CreateAccount = () => {
             />
           </div>
 
-          <div className="form-group w-[370px] flex flex-col gap-2">
-            <label htmlFor="MotDePasse">Mot de passe</label>
+          <div className="form-group flex flex-col gap-1">
+            <label htmlFor="MotDePasse" className="text-black"> {/* Label en noir */}
+              Mot de passe
+            </label>
             <input
-            className="p-2 border border-slate-300 rounded-xl focus:outline-none focus:border-blue-400"
+              className="p-2 border border-slate-300 rounded-md focus:outline-none focus:border-blue-300"
               type="password"
               id="MotDePasse"
               placeholder="Mot de passe"
@@ -390,12 +284,12 @@ const CreateAccount = () => {
             />
           </div>
 
-          <div className="form-group w-[370px] flex flex-col gap-2">
-            <label htmlFor="confirmationMotDePasse">
+          <div className="form-group flex flex-col gap-1">
+            <label htmlFor="confirmationMotDePasse" className="text-black"> {/* Label en noir */}
               Confirmer le mot de passe
             </label>
             <input
-            className="p-2 border border-slate-300 rounded-xl focus:outline-none focus:border-blue-400"
+              className="p-2 border border-slate-300 rounded-md focus:outline-none focus:border-blue-300"
               type="password"
               id="confirmationMotDePasse"
               placeholder="Confirmer le mot de passe"
@@ -410,17 +304,25 @@ const CreateAccount = () => {
             />
           </div>
         </div>
-        <button type="submit" className="w-full hover:opacity-70 text-center mt-7 mb-2 bg-slate-950 text-white py-4 rounded-xl">Créer un compte</button>
+        <button
+          type="submit"
+          className="w-full hover:opacity-80 text-center mt-7 mb-2 bg-black text-white py-3 rounded-md transition-all" // Bouton en noir
+        >
+          Créer un compte
+        </button>
         {errors.length > 0 && (
-          <ul>
+          <ul className="text-red-500 text-sm mt-4">
             {errors.map((error, index) => (
               <li key={index}>{error}</li>
             ))}
           </ul>
         )}
-        <div className="login-link">
-          <p>
-            Vous avez déjà un compte ? <a href="/" className="text-orange-500">Connectez-vous ici</a>
+        <div className="login-link text-center mt-4">
+          <p className="text-slate-600">
+            Vous avez déjà un compte ?{" "}
+            <a href="/" className="text-orange-500 hover:underline">
+              Connectez-vous ici
+            </a>
           </p>
         </div>
       </form>

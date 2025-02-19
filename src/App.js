@@ -15,6 +15,7 @@ import ListeDemandesAdmin from "./components/ListeDemandesAdmin";
 import "./App.css";
 import { useSelector } from "react-redux";
 import ProtectedRoute from "./ProtectedRoutes/ProtectedRoute";
+import AboutUs from "./components/AboutUs";
 const App = () => {
   const user = useSelector((state) => state.user);
   const isAuthenticated = user?.authentifie;
@@ -92,7 +93,17 @@ const App = () => {
               </ProtectedRoute>
             }
           />
+        <Route
+            path="aboutus"
+            element={
+              <ProtectedRoute isAuthenticated={isAuthenticated}>
+                <AboutUs/>
+              </ProtectedRoute>
+            }
+          />
+        
         </Route>
+        
       </Routes>
     </Router>
   );

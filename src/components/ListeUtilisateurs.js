@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
-import HeaderSection from "./HeaderSection";
-import NavigationBar from "./NavigationBar";
-import Index from "./Index";
-import Footer from "./Footer";
 import { IoMdPersonAdd } from "react-icons/io";
 import { useSelector } from "react-redux";
 
@@ -45,131 +41,74 @@ const ListeUtilisateurs = () => {
     navigate(`/modifier-utilisateur/${id}`);
   };
 
-  if (loading) return <div>Chargement...</div>;
-  if (error) return <div>{error}</div>;
-
-  const tableStyle = {
-    width: "100%",
-    borderCollapse: "collapse",
-    marginTop: "20px",
-    boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
-  };
-
-  const thStyle = {
-    backgroundColor: primaryColor,
-    color: "#fff",
-    padding: "10px",
-    textAlign: "left",
-    fontSize: "16px",
-    borderBottom: "2px solid #ddd",
-  };
-
-  const tdStyle = {
-    padding: "10px",
-    borderBottom: "1px solid #ddd",
-    textAlign: "left",
-    fontSize: "14px",
-  };
-
-  const avatarStyle = {
-    width: "50px",
-    height: "50px",
-    borderRadius: "50%",
-    objectFit: "cover",
-    boxShadow: "0 2px 5px rgba(0, 0, 0, 0.2)",
-  };
-
-  const buttonStyle = {
-    padding: "8px 12px",
-    margin: "0 5px",
-    backgroundColor: primaryColor,
-    color: "#fff",
-    border: "none",
-    borderRadius: "5px",
-    cursor: "pointer",
-    fontSize: "14px",
-    transition: "background-color 0.3s ease",
-  };
-
-  const buttonHoverStyle = {
-    ...buttonStyle,
-    backgroundColor: `${primaryColor}CC`, // Couleur légèrement assombrie
-  };
+  if (loading) return <div className="text-center py-4">Chargement...</div>;
+  if (error) return <div className="text-center text-red-500 py-4">{error}</div>;
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        minHeight: "100vh",
-        padding: "15px",
-      }}
-    >
-      <div className="flex justify-between items-center">
-        <h1
-          className="text-xl font-bold text-center"
-          style={{ color: `${user?.couleur ? user.couleur : "#333"}` }}
-        >
-          Listes Des Utilisateurs
-        </h1>
-        <NavLink to="/ajouter-utilisateur" style={{ ...buttonStyle, textDecoration: 'none', display: 'inline-flex',gap:'12px',alignItems:'center'}}>
-           <IoMdPersonAdd/>
+    <div className="min-h-screen p-6 bg-gray-50">
+      <div className="max-w-6xl mx-auto">
+        {/* En-tête */}
+        <div className="flex justify-between items-center mb-8">
+          <h1
+            className="text-3xl font-bold"
+            style={{ color: primaryColor }}
+          >
+            Liste des Utilisateurs
+          </h1>
+          <NavLink
+            to="/ajouter-utilisateur"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg text-white font-semibold transition-colors duration-300 hover:opacity-90"
+            style={{ backgroundColor: primaryColor }}
+          >
+            <IoMdPersonAdd />
             Ajouter un utilisateur
-        </NavLink>
-      </div>
-      <table style={tableStyle}>
-        <thead>
-          <tr>
-            <th style={thStyle}>Nom</th>
-            <th style={thStyle}>Email</th>
-            <th style={thStyle}>Avatar</th>
-            <th style={thStyle}>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
+          </NavLink>
+        </div>
+
+        {/* Liste des utilisateurs sous forme de cartes */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {users.map((user) => (
-            <tr key={user.id} className="hover:bg-slate-200">
-              <td style={tdStyle}>
-                {user.prenom} {user.nom}
-              </td>
-              <td style={tdStyle}>{user.email}</td>
-              <td style={tdStyle}>
-                <img src={user.avatar} alt="Avatar" style={avatarStyle} />
-              </td>
-              <td style={tdStyle}>
+            <div
+              key={user.id}
+              className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105"
+            >
+              {/* Avatar et informations */}
+              <div className="p-6">
+                <div className="flex items-center justify-center">
+                  <img
+                    src={user.avatar}
+                    alt="Avatar"
+                    className="w-20 h-20 rounded-full object-cover border-4"
+                    style={{ borderColor: primaryColor }}
+                  />
+                </div>
+                <h2 className="text-xl font-semibold text-center mt-4">
+                  {user.prenom} {user.nom}
+                </h2>
+                <p className="text-gray-600 text-center mt-2">{user.email}</p>
+              </div>
+
+              {/* Actions */}
+              <div className="flex justify-center gap-4 p-4 bg-gray-50">
                 <button
-                  style={buttonStyle}
+                  className="px-4 py-2 rounded-lg text-white font-semibold transition-colors duration-300 hover:opacity-90"
+                  style={{ backgroundColor: primaryColor }}
                   onClick={() => updateUser(user.id)}
-                  onMouseOver={(e) =>
-                    (e.target.style.backgroundColor =
-                      buttonHoverStyle.backgroundColor)
-                  }
-                  onMouseOut={(e) =>
-                    (e.target.style.backgroundColor =
-                      buttonStyle.backgroundColor)
-                  }
                 >
                   Modifier
                 </button>
                 <button
-                  style={buttonStyle}
+                  className="px-4 py-2 rounded-lg text-white font-semibold transition-colors duration-300 hover:opacity-90"
+                  style={{ backgroundColor: primaryColor }}
                   onClick={() => deleteUser(user.id)}
-                  onMouseOver={(e) =>
-                    (e.target.style.backgroundColor =
-                      buttonHoverStyle.backgroundColor)
-                  }
-                  onMouseOut={(e) =>
-                    (e.target.style.backgroundColor =
-                      buttonStyle.backgroundColor)
-                  }
                 >
                   Supprimer
                 </button>
-              </td>
-            </tr>
+              </div>
+            </div>
           ))}
-        </tbody>
-      </table>
+        </div>
+      </div>
     </div>
   );
 };

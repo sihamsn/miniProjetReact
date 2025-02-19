@@ -25,26 +25,10 @@ const Layout = () => {
         </div>
       </main>
 
-{/*     
-      <div style={mainContentStyle}>
-       
-        <aside style={sidebarStyle}>
-          <Index />
-        </aside>
 
-       
-        <main style={mainSectionStyle}>
-          <NavigationBar />
-          <main style={{ flex: 1, padding: '20px' }}>
-          <Outlet />
-        </main>
-        </main>
-      </div>
-
-    
       <footer style={footerStyle}>
         <Footer />
-      </footer> */}
+      </footer> 
     </div>
   );
 };
