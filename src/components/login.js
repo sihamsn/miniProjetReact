@@ -53,16 +53,16 @@ const Login = () => {
 
   return (
     <div className="Login" style={styles.container}>
-      {/* Logo en haut à droite de l'écran */}
+
       <div style={styles.logoContainer}>
         <img
-          src="/fauget.png" // Remplacez par le chemin de votre logo
+          src="/fauget.png" 
           alt="Logo"
           style={styles.logo}
         />
       </div>
 
-      {/* Moitié gauche avec formulaire */}
+     
       <div style={styles.leftHalf}>
         <form onSubmit={handleSubmit} style={styles.form}>
           <h1 style={styles.heading}>Connexion</h1>
@@ -110,24 +110,24 @@ const styles = {
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
-    position: 'relative', // Pour positionner le logo absolument
+    position: 'relative', 
   },
   logoContainer: {
-    position: 'absolute', // Position absolue pour placer le logo
-    top: '0px', // Espacement depuis le haut
-    right: '10px', // Espacement depuis la droite
-    zIndex: 10, // Assure que le logo est au-dessus des autres éléments
+    position: 'absolute', 
+    top: '0px', 
+    right: '10px',
+    zIndex: 10, 
   },
   logo: {
-    width: '250px', // Taille du logo augmentée
+    width: '250px', 
     height: 'auto',
   },
   leftHalf: {
-    width: '50%', // Prend la moitié gauche de la page
+    width: '50%', 
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white', // Fond blanc légèrement transparent
+    backgroundColor: 'white', 
   },
   form: {
    

@@ -53,7 +53,8 @@ const ModifierUtilisateur = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
       <div className="w-full max-w-2xl bg-white rounded-lg shadow-lg p-8">
-        {/* Titre du formulaire */}
+   
+   
         <h1
           className="text-2xl font-bold mb-6 text-center"
           style={{ color: primaryColor }}
@@ -61,9 +62,11 @@ const ModifierUtilisateur = () => {
           Modifier Utilisateur
         </h1>
 
-        {/* Formulaire */}
+   
+   
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Champ Prénom */}
+   
+   
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Prénom :
@@ -79,7 +82,8 @@ const ModifierUtilisateur = () => {
             />
           </div>
 
-          {/* Champ Nom */}
+        
+        
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Nom :
@@ -95,7 +99,8 @@ const ModifierUtilisateur = () => {
             />
           </div>
 
-          {/* Champ Email */}
+        
+        
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Email :
@@ -111,7 +116,8 @@ const ModifierUtilisateur = () => {
             />
           </div>
 
-          {/* Champ Avatar (URL) */}
+       
+       
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Avatar (URL) :
@@ -126,7 +132,8 @@ const ModifierUtilisateur = () => {
             />
           </div>
 
-          {/* Boutons */}
+   
+   
           <div className="flex justify-end gap-4">
             <button
               type="button"

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchUserRequestsAsyncAdmin, approveRequestAsync, rejectRequestAsync } from '../redux/demandSlice';
-import { FaCheck, FaTimes, FaInfoCircle } from 'react-icons/fa'; // Importation des icônes de React Icons
+import { FaCheck, FaTimes, FaInfoCircle } from 'react-icons/fa'; 
 
 const ListeDemandesAdmin = () => {
   const dispatch = useDispatch();
   const { isLoading, error, requests } = useSelector((state) => state.demands);
-  const user = useSelector((state) => state.user); // Récupération de l'utilisateur connecté
-  const [expandedRequestId, setExpandedRequestId] = useState(null); // Pour gérer l'affichage des détails
+  const user = useSelector((state) => state.user);
+  const [expandedRequestId, setExpandedRequestId] = useState(null); 
 
   useEffect(() => {
     dispatch(fetchUserRequestsAsyncAdmin());
@@ -27,33 +27,33 @@ const ListeDemandesAdmin = () => {
 
   const toggleDetails = (id) => {
     if (expandedRequestId === id) {
-      setExpandedRequestId(null); // Fermer les détails si déjà ouverts
+      setExpandedRequestId(null); 
     } else {
-      setExpandedRequestId(id); // Ouvrir les détails pour cette demande
+      setExpandedRequestId(id); 
     }
   };
 
   return (
     <div className="max-w-4xl mx-auto p-8 bg-gray-50 rounded-lg shadow-lg">
-      {/* Titre principal */}
+     
       <h1
         className="text-3xl font-bold text-center mb-8"
-        style={{ color: user?.couleur || '#2c3e50' }} // Couleur dynamique
+        style={{ color: user?.couleur || '#2c3e50' }} 
       >
         Gestion des Demandes
       </h1>
 
-      {/* Chargement et erreurs */}
+   
       {isLoading && <p className="text-center text-gray-600">Chargement des demandes...</p>}
       {error && <p className="text-center text-red-500 font-bold">Erreur : {error}</p>}
 
       {!isLoading && !error && (
         <div>
-          {/* Demandes en Attente */}
+        
           <section className="mb-10">
             <h2
               className="text-2xl font-semibold mb-4 pb-2 border-b-2"
-              style={{ color: user?.couleur || '#16a085', borderColor: user?.couleur || '#16a085' }} // Couleur dynamique
+              style={{ color: user?.couleur || '#16a085', borderColor: user?.couleur || '#16a085' }} 
             >
               Demandes en Attente
             </h2>
@@ -79,28 +79,28 @@ const ListeDemandesAdmin = () => {
                         <td className="p-3 border-b flex gap-3">
                           <button
                             className="flex items-center gap-2 hover:opacity-80 transition-opacity duration-200"
-                            style={{ color: user?.couleur || '#16a085' }} // Couleur dynamique
+                            style={{ color: user?.couleur || '#16a085' }}
                             onClick={() => handleApprove(request.userId, request.id)}
                           >
                             <FaCheck /> Approuver
                           </button>
                           <button
                             className="flex items-center gap-2 hover:opacity-80 transition-opacity duration-200"
-                            style={{ color: user?.couleur || '#e74c3c' }} // Couleur dynamique
+                            style={{ color: user?.couleur || '#e74c3c' }} 
                             onClick={() => handleReject(request.userId, request.id)}
                           >
                             <FaTimes /> Rejeter
                           </button>
                           <button
                             className="flex items-center gap-2 hover:opacity-80 transition-opacity duration-200"
-                            style={{ color: user?.couleur || '#3498db' }} // Couleur dynamique
+                            style={{ color: user?.couleur || '#3498db' }} 
                             onClick={() => toggleDetails(request.id)}
                           >
                             <FaInfoCircle /> Détails
                           </button>
                         </td>
                       </tr>
-                      {/* Affichage des détails si la demande est développée */}
+                      
                       {expandedRequestId === request.id && (
                         <tr>
                           <td colSpan="3" className="p-4 bg-gray-100">
@@ -119,11 +119,11 @@ const ListeDemandesAdmin = () => {
             )}
           </section>
 
-          {/* Demandes Approuvées */}
+   
           <section className="mb-10">
             <h2
               className="text-2xl font-semibold mb-4 pb-2 border-b-2"
-              style={{ color: user?.couleur || '#16a085', borderColor: user?.couleur || '#16a085' }} // Couleur dynamique
+              style={{ color: user?.couleur || '#16a085', borderColor: user?.couleur || '#16a085' }} 
             >
               Demandes Approuvées
             </h2>
@@ -148,7 +148,7 @@ const ListeDemandesAdmin = () => {
             )}
           </section>
 
-          {/* Demandes Rejetées */}
+
           <section className="mb-10">
             <h2
               className="text-2xl font-semibold mb-4 pb-2 border-b-2"

@@ -30,13 +30,13 @@ const Profile = () => {
         Mon Profil
       </h1>
 
-      {/* Carte de Profil Verticale Asymétrique */}
+    
       <div className="w-full max-w-5xl">
         <SpotlightCard
           className="custom-spotlight-card bg-white rounded-xl shadow-lg overflow-hidden flex flex-col lg:flex-row"
           spotlightColor={`${user?.couleur ? `${user?.couleur}20` : "#33333320"}`}
         >
-          {/* Section Avatar */}
+       
           <div className="flex justify-center items-center p-8 bg-white-50 lg:w-1/3 lg:border-r lg:border-white-200">
             <div className="w-48 h-48 rounded-full border-4 overflow-hidden shadow-lg">
               <img

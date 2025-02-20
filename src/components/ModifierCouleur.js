@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeColor } from '../redux/userSlice';
 import axios from 'axios';
-import { FaRegCheckCircle, FaRegTimesCircle } from 'react-icons/fa'; // Icônes de validation et erreur
-import { IoMdColorPalette } from 'react-icons/io'; // Icône de palette de couleurs
+import { FaRegCheckCircle, FaRegTimesCircle } from 'react-icons/fa'; 
+import { IoMdColorPalette } from 'react-icons/io'; 
 
 const ModifierCouleur = () => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const [newColor, setNewColor] = useState(user.couleur || '#000000'); // Couleur par défaut
+  const [newColor, setNewColor] = useState(user.couleur || '#000000'); 
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
@@ -47,7 +47,7 @@ const ModifierCouleur = () => {
       </h1>
 
       <div className="flex flex-col items-center">
-        {/* Messages d'erreur et de succès */}
+       
         {error && (
           <p className="text-red-500 font-bold flex items-center gap-2">
             <FaRegTimesCircle />
@@ -61,7 +61,7 @@ const ModifierCouleur = () => {
           </p>
         )}
 
-        {/* Sélecteur de couleur */}
+   
         <div className="flex items-center gap-3 mb-5">
           <IoMdColorPalette className="text-blue-500 text-2xl" />
           <input
@@ -72,7 +72,7 @@ const ModifierCouleur = () => {
           />
         </div>
 
-        {/* Bouton de validation */}
+     
         <button
           onClick={handleChangeColor}
           className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all duration-300"

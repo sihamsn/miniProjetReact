@@ -104,7 +104,7 @@ const CreateAccount = () => {
         </h1>
         <div className="inputs grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
           <div className="form-group flex flex-col gap-1">
-            <label htmlFor="nom" className="text-black"> {/* Label en noir */}
+            <label htmlFor="nom" className="text-black"> 
               Nom
             </label>
             <input
@@ -120,7 +120,7 @@ const CreateAccount = () => {
             />
           </div>
           <div className="form-group flex flex-col gap-1">
-            <label htmlFor="prenom" className="text-black"> {/* Label en noir */}
+            <label htmlFor="prenom" className="text-black"> 
               Prénom
             </label>
             <input
@@ -137,7 +137,7 @@ const CreateAccount = () => {
           </div>
 
           <div className="form-group flex flex-col gap-1">
-            <label htmlFor="pseudo" className="text-black"> {/* Label en noir */}
+            <label htmlFor="pseudo" className="text-black"> 
               Pseudo
             </label>
             <input
@@ -154,7 +154,7 @@ const CreateAccount = () => {
           </div>
 
           <div className="form-group flex flex-col gap-1">
-            <label htmlFor="email" className="text-black"> {/* Label en noir */}
+            <label htmlFor="email" className="text-black"> 
               Email
             </label>
             <input
@@ -171,7 +171,7 @@ const CreateAccount = () => {
           </div>
 
           <div className="form-group flex flex-col gap-1">
-            <label htmlFor="couleur" className="text-black"> {/* Label en noir */}
+            <label htmlFor="couleur" className="text-black"> 
               Couleur préférée
             </label>
             <input
@@ -188,7 +188,7 @@ const CreateAccount = () => {
           </div>
 
           <div className="form-group flex flex-col gap-1">
-            <label htmlFor="age" className="text-black"> {/* Label en noir */}
+            <label htmlFor="age" className="text-black">
               Âge
             </label>
             <input
@@ -205,7 +205,7 @@ const CreateAccount = () => {
           </div>
 
           <div className="form-group flex flex-col gap-1">
-            <label htmlFor="Devise" className="text-black"> {/* Label en noir */}
+            <label htmlFor="Devise" className="text-black">
               Devise
             </label>
             <input
@@ -222,7 +222,7 @@ const CreateAccount = () => {
           </div>
 
           <div className="form-group flex flex-col gap-1">
-            <label htmlFor="Pays" className="text-black"> {/* Label en noir */}
+            <label htmlFor="Pays" className="text-black"> 
               Pays
             </label>
             <input
@@ -238,7 +238,7 @@ const CreateAccount = () => {
             />
           </div>
           <div className="form-group flex flex-col gap-1">
-            <label htmlFor="avatar" className="text-black"> {/* Label en noir */}
+            <label htmlFor="avatar" className="text-black">
               Avatar
             </label>
             <input
@@ -253,7 +253,7 @@ const CreateAccount = () => {
           </div>
 
           <div className="form-group flex flex-col gap-1">
-            <label htmlFor="photo" className="text-black"> {/* Label en noir */}
+            <label htmlFor="photo" className="text-black"> 
               Photo
             </label>
             <input
@@ -268,7 +268,7 @@ const CreateAccount = () => {
           </div>
 
           <div className="form-group flex flex-col gap-1">
-            <label htmlFor="MotDePasse" className="text-black"> {/* Label en noir */}
+            <label htmlFor="MotDePasse" className="text-black"> 
               Mot de passe
             </label>
             <input
@@ -285,7 +285,7 @@ const CreateAccount = () => {
           </div>
 
           <div className="form-group flex flex-col gap-1">
-            <label htmlFor="confirmationMotDePasse" className="text-black"> {/* Label en noir */}
+            <label htmlFor="confirmationMotDePasse" className="text-black"> 
               Confirmer le mot de passe
             </label>
             <input
@@ -306,7 +306,7 @@ const CreateAccount = () => {
         </div>
         <button
           type="submit"
-          className="w-full hover:opacity-80 text-center mt-7 mb-2 bg-black text-white py-3 rounded-md transition-all" // Bouton en noir
+          className="w-full hover:opacity-80 text-center mt-7 mb-2 bg-black text-white py-3 rounded-md transition-all" 
         >
           Créer un compte
         </button>

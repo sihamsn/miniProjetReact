@@ -11,7 +11,6 @@ const Accueil = () => {
 
   return (
     <div className="flex items-center justify-between p-10 font-roboto max-w-[1200px] mx-auto bg-gray-50 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl">
-      {/* Section Texte */}
       <div className="flex-1 pr-5">
         <h1
           className="text-4xl font-bold mb-2 transition-all duration-300 hover:text-blue-500"
@@ -34,7 +33,7 @@ const Accueil = () => {
           )}
         </h1>
 
-        {/* Message selon le rôle */}
+       
         {user?.admin ? (
           <div className="bg-green-500 text-white px-5 py-2 rounded-md mt-5 text-lg text-center transition-all duration-300 hover:bg-green-600">
             Bienvenue,Vous êtes connecté en tant qu'administrateur.
@@ -49,10 +48,10 @@ const Accueil = () => {
         )}
       </div>
 
-      {/* Section Image */}
+
       <div>
         <img
-          src="entreprise.png" // Remplacez par le chemin de votre image
+          src="entreprise.png"
           alt="Entreprise"
           className="w-[350px] h-auto rounded-lg shadow-md transition-all duration-300 hover:scale-105 hover:shadow-lg"
         />

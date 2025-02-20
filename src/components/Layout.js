@@ -14,7 +14,7 @@ const Layout = () => {
 
   return (
     <div>
-      {/* <SplashCursor/> */}
+   
       <header>
         <HeaderSection />
       </header>

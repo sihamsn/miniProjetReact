@@ -3,20 +3,19 @@ import { useSelector } from 'react-redux';
 
 const Footer = () => {
   const user = useSelector((state) => state.user);
-  const backgroundColor = user?.couleur || '#1A1A1A'; // Couleur dynamique ou valeur par défaut
-
+  const backgroundColor = user?.couleur || '#1A1A1A'; 
   return (
     <footer
       className="text-white text-center py-8 px-5 shadow-lg border-t border-opacity-10 transition-colors duration-500"
       style={{ backgroundColor }}
     >
       <div className="max-w-4xl mx-auto">
-        {/* Adresse */}
+  
         <p className="text-sm font-light text-white text-opacity-80 mb-5">
           Adresse: Hay Salam, Salé, Maroc
         </p>
 
-        {/* Liens sociaux */}
+ 
         <div className="flex justify-center space-x-4 mt-4">
           <a
             href="https://facebook.com"
@@ -38,7 +37,7 @@ const Footer = () => {
           </a>
         </div>
 
-        {/* Copyright */}
+     
         <p className="text-xs text-white text-opacity-50 mt-8 font-light">
           © 2024 Fauget Software. Tous droits réservés.
         </p>

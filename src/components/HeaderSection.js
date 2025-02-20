@@ -48,7 +48,7 @@ const HeaderSection = () => {
 
         </div>
 
-        {/* Message de bienvenue */}
+ 
         <div className="center-content flex flex-col lg:flex-row items-center gap-4">
           
           <GradientText
@@ -61,14 +61,14 @@ const HeaderSection = () => {
           </GradientText>
         </div>
 
-        {/* Bouton de déconnexion */}
+
         <div className="flex items-center gap-4">
           {user?.authentifie && (
             <button
   onClick={handleLogout}
   className="group relative overflow-hidden bg-black rounded-xl text-white flex items-center justify-center px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4"
 >
-  {/* Affichage de l'icône et du texte */}
+
   <span className="flex items-center gap-2 justify-center">
     <GrLogout />
     <span className="hidden sm:block">Se Déconnecter</span>

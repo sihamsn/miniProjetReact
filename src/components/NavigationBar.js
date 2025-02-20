@@ -1,19 +1,18 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { FaBars, FaTimes } from "react-icons/fa"; // Import des icônes
+import { FaBars, FaTimes } from "react-icons/fa"; 
 
 const NavigationBar = () => {
   const user = useSelector((state) => state.user);
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // État pour gérer l'affichage du menu mobile
-
+  const [isMenuOpen, setIsMenuOpen] = useState(false); 
   const linkColor = user?.couleur || "#999";
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen); // Fonction pour basculer l'état du menu
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen); 
 
   return (
     <nav className="relative">
-      {/* Mobile menu toggle (Hamburger on the right) */}
+     
       <div className="lg:hidden flex items-center justify-end gap-3">
         <button
           onClick={toggleMenu}
@@ -24,7 +23,7 @@ const NavigationBar = () => {
         </button>
       </div>
 
-      {/* Desktop menu */}
+     
       <ul className="hidden lg:flex lg:items-center lg:gap-3 lg:justify-center">
         <li className="nav-item">
           <NavLink
@@ -152,7 +151,7 @@ const NavigationBar = () => {
         )}
       </ul>
 
-      {/* Mobile menu */}
+      {/* pour mobile*/}
       <div
         className={`lg:hidden ${isMenuOpen ? "block" : "hidden"} absolute top-24 left-0 w-full bg-white shadow-lg z-50`}
       >

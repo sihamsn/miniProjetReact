@@ -14,8 +14,7 @@ const AjouterDemande = () => {
   const navigate = useNavigate();
 
   const user = useSelector((state) => state.user);
-  const primaryColor = user?.couleur || '#007BFF'; // Couleur par défaut si non définie
-
+  const primaryColor = user?.couleur || '#007BFF'; 
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -52,7 +51,6 @@ const AjouterDemande = () => {
       onSubmit={handleSubmit}
       className="bg-gray-50 rounded-lg shadow-lg p-5 max-w-[800px] mx-auto my-5"
     >
-      {/* Titre */}
       <label className="block mb-4">
         <span className="font-bold" style={{ color: primaryColor }}>
           Titre:
@@ -68,7 +66,6 @@ const AjouterDemande = () => {
         />
       </label>
 
-      {/* Description */}
       <label className="block mb-4">
         <span className="font-bold" style={{ color: primaryColor }}>
           Description:
@@ -82,8 +79,6 @@ const AjouterDemande = () => {
           style={{ borderColor: primaryColor, height: '100px' }}
         />
       </label>
-
-      {/* Date de début */}
       <label className="block mb-4">
         <span className="font-bold" style={{ color: primaryColor }}>
           Date de début:
@@ -97,8 +92,6 @@ const AjouterDemande = () => {
           style={{ borderColor: primaryColor }}
         />
       </label>
-
-      {/* Date de fin */}
       <label className="block mb-4">
         <span className="font-bold" style={{ color: primaryColor }}>
           Date de fin:
@@ -112,8 +105,6 @@ const AjouterDemande = () => {
           style={{ borderColor: primaryColor }}
         />
       </label>
-
-      {/* Type de demande */}
       <label className="block mb-4">
         <span className="font-bold" style={{ color: primaryColor }}>
           Type:
@@ -131,8 +122,6 @@ const AjouterDemande = () => {
           <option value="Autre">Autre</option>
         </select>
       </label>
-
-      {/* Bouton d'ajout */}
       <button
         type="submit"
         className="w-full p-2 text-white rounded-md transition-all duration-300 hover:bg-blue-700"

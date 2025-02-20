@@ -4,24 +4,24 @@ import { fetchUserRequestsAsync, cancelRequestAsync } from '../redux/demandSlice
 
 const ListeDesDemandes = () => {
   const dispatch = useDispatch();
-  const userId = useSelector((state) => state.user?.id); // Récupérer l'ID de l'utilisateur connecté
-  const requests = useSelector((state) => state.demands.requests); // Récupérer les demandes
+  const userId = useSelector((state) => state.user?.id); 
+  const requests = useSelector((state) => state.demands.requests); 
   const isLoading = useSelector((state) => state.demands.isLoading);
   const error = useSelector((state) => state.demands.error);
 
-  const user = useSelector((state) => state.user); // Récupération de l'utilisateur connecté
-  const primaryColor = user?.couleur || '#007BFF'; // Couleur par défaut si non définie
+  const user = useSelector((state) => state.user);
+  const primaryColor = user?.couleur || '#007BFF'; 
 
   useEffect(() => {
     if (userId) {
-      dispatch(fetchUserRequestsAsync(userId)); // Charger les demandes de l'utilisateur au démarrage
+      dispatch(fetchUserRequestsAsync(userId)); 
     }
   }, [dispatch, userId]);
 
   const handleCancelRequest = (requestId) => {
     console.log(`Tentative d'annulation de la demande avec ID: ${requestId} pour l'utilisateur ID: ${userId}`);
     if (window.confirm("Voulez-vous annuler cette demande ?")) {
-      dispatch(cancelRequestAsync({ userId, requestId })); // Assurez-vous que userId et requestId sont corrects
+      dispatch(cancelRequestAsync({ userId, requestId })); 
     }
   };
 
@@ -40,7 +40,7 @@ const ListeDesDemandes = () => {
         <p className="text-center">Aucune demande trouvée.</p>
       ) : (
         <div>
-          {/* Demandes en attente */}
+        
           <div className="mb-5">
             <h3 className="text-xl font-semibold mb-3" style={{ color: primaryColor }}>
               Demandes en attente
@@ -68,7 +68,7 @@ const ListeDesDemandes = () => {
             )}
           </div>
 
-          {/* Demandes approuvées */}
+      
           <div className="mb-5">
             <h3 className="text-xl font-semibold mb-3" style={{ color: primaryColor }}>
               Demandes approuvées
@@ -89,7 +89,7 @@ const ListeDesDemandes = () => {
             )}
           </div>
 
-          {/* Demandes rejetées */}
+      
           <div className="mb-5">
             <h3 className="text-xl font-semibold mb-3" style={{ color: primaryColor }}>
               Demandes rejetées
